@@ -24,21 +24,23 @@ public class ServiceBApplication {
 }
 
 @RestController
-class ListServiceController {
+class ServiceBRestController {
     @Autowired
     RestTemplate restTemplate;
 
-    @RequestMapping(value = "/list-service/{appName}", method = RequestMethod.GET)
-    public String getStudents(@PathVariable String appName) {
-        System.out.println("Getting Spring Cloud Service details for " + appName);
+    @RequestMapping(value = "/apply-for-mortgage/{term}", method = RequestMethod.GET)
+    public String applyForMortgage(@PathVariable String term) {
+        System.out.println("Getting Spring Cloud Service details for " + term);
 
-        String response = restTemplate.exchange("http://spring-cloud-service-a/fetch-service-instances/{appName}",
+        String response = restTemplate.exchange("http://spring-cloud-service-a/calc-mortgage-pymt/{term}",
                 HttpMethod.GET, null,
-                new ParameterizedTypeReference<String>() {}, appName).getBody();
+                new ParameterizedTypeReference<String>() {}, term).getBody();
 
         System.out.println("Response Received as " + response);
 
-        return "Service Name -  " + appName + " \n Service Details " + response;
+        return "Term: " + term + " years\n"+
+                "Status: Approved\n"+
+                "Mortgage Monthly Payment: " + response +"\n";
     }
 
     @Bean
