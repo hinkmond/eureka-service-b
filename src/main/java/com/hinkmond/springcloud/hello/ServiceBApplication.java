@@ -1,4 +1,4 @@
-package hello;
+package com.hinkmond.springcloud.hello;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
