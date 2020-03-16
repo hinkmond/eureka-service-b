@@ -32,9 +32,9 @@ class ServiceBRestController {
     public String applyForMortgage(@PathVariable String term) {
         System.out.println("Getting Spring Cloud Service details for " + term);
 
-        String response = restTemplate.exchange("http://spring-cloud-service-a/calc-mortgage-pymt/{term}",
+        Double response = restTemplate.exchange("http://spring-cloud-service-a/calc-mortgage-pymt/{term}",
                 HttpMethod.GET, null,
-                new ParameterizedTypeReference<String>() {}, term).getBody();
+                new ParameterizedTypeReference<Double>() {}, term).getBody();
 
         System.out.println("Response Received as " + response);
 
